@@ -57,7 +57,7 @@ module Tod
 	  intersection_start = [a.first, b.first].max
       intersection_end = [a.last, b.last].min
 	  
-	  self.class.new(intersection_start, intersection_end, false)
+	  Shift.new(intersection_start, intersection_end)
     end
 
     def contains?(shift)
