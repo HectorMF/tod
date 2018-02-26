@@ -48,6 +48,17 @@ module Tod
       a, b = [a, b].sort_by(&:last)
       b.last.send(op, a.last) && a.last.send(op, b.first)
     end
+	
+	# Returns the intersection range
+    def intersection(shift1, shift2)
+	  a = shift1.range
+	  b = shift2.range
+	  
+	  intersection_start = [a.first, b.first].max
+      intersection_end = [a.last, b.last].min
+	  
+	  initialize(intersection_start, intersection_end, exclude_end?)
+    end
 
     def contains?(shift)
       self.include?(shift.beginning) && self.include?(shift.ending)
