@@ -51,13 +51,17 @@ module Tod
 	
 	# Returns the intersection range
     def self.intersection(shift1, shift2)
-	  a = shift1.range
-	  b = shift2.range
-	  
-	  intersection_start = [a.first, b.first].max
-      intersection_end = [a.last, b.last].min
-	  
-	  Shift.new(intersection_start, intersection_end)
+	  if shift1.overlaps?(shift2)
+		a = shift1.range
+		b = shift2.range
+		  
+		intersection_start = [a.first, b.first].max
+		intersection_end = [a.last, b.last].min
+		  
+		return Shift.new(intersection_start, intersection_end)
+	  else
+		return nil
+	  end
     end
 
     def contains?(shift)
